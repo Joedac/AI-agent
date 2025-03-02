@@ -1,3 +1,6 @@
 mistralai
 smolagents
 python-dotenv
+matplotlib
+gradio_client
+gradio

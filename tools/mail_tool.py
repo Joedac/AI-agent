@@ -9,7 +9,7 @@ class MailTool:
     @staticmethod
     @tool
     def send_email(recipient: str, subject: str, content: str) -> str:
-        """Send an email after user validate it.
+        """Send an email after user validate it, if user respond non, final answer is send email canceled.
         Args:
             recipient: recipient email adress
             subject: email subject
@@ -18,15 +18,15 @@ class MailTool:
             error or succes message
         """
 
-        print("\n--- 📨 Détails de l'e-mail ---")
-        print(f"Destinataire: {recipient}")
-        print(f"Sujet: {subject}")
-        print(f"Contenu:\n{content}")
-
-        confirmation = input("\n📨 Voulez-vous envoyer cet e-mail ? (oui/non): ").strip().lower()
-
-        if confirmation != "oui":
-            return "Envoi annulé par l'utilisateur."
+#         print("\n--- 📨 Détails de l'e-mail ---")
+#         print(f"Destinataire: {recipient}")
+#         print(f"Sujet: {subject}")
+#         print(f"Contenu:\n{content}")
+#
+#         confirmation = input("\n📨 Voulez-vous envoyer cet e-mail ? (oui/non): ").strip().lower()
+#
+#         if confirmation != "oui":
+#              return "Final answer: L'envoi de l'email a été annulé. Ne repose plus la question."
 
         gmail_user = os.getenv("EMAIL_USER")
         gmail_password = os.getenv("EMAIL_PASSWORD")

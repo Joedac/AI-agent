@@ -29,7 +29,7 @@ class FileTool:
 
             with open(file_name, mode) as f:
                 f.write(content if not append else f"\n{content}")
-            return f"Content {'appended to' if append else 'written to'} {file_name}"
+
         except Exception as e:
             return f"Error writing to file: {e}"
 

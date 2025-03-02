@@ -1,0 +1,30 @@
+
+services:
+  ai-agent-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app:rw
+      - ./data:/app/data:rw
+    user: "${UID:-1000}:${GID:-1000}"
+    restart: unless-stopped
+    container_name: ai-agent-web
+    command: python app.py
+
+  ai-agent-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app:rw
+      - ./data:/app/data:rw
+    user: "${UID:-1000}:${GID:-1000}"
+    restart: "no"
+    container_name: ai-agent-cli
+    command: python main.py
+    # Mode interactif pour le terminal
+    stdin_open: true
+    tty: true

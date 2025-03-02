@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from smolagents import CodeAgent, DuckDuckGoSearchTool, HfApiModel
+from smolagents import CodeAgent, DuckDuckGoSearchTool, HfApiModel, VisitWebpageTool, Tool
 from models.llm import MistralLLM
 from tools.file_tool import FileTool
 from tools.mail_tool import MailTool
@@ -13,27 +13,44 @@ def main():
     load_dotenv()
 
     api_key = os.getenv("MISTRAL_API_KEY")
+    hf_token = os.getenv("HUGGINGFACE_TOKEN")
     if not api_key:
         print("Erreur: Mistral API key not found in .env")
         return
 
     mistral_model = MistralLLM(api_key=api_key)
 
+#    *** test HF Spaces ***
+#     os.environ["HUGGINGFACE_TOKEN"] = hf_token
+#     image_generation_tool = Tool.from_space(
+#         "black-forest-labs/FLUX.1-schnell",
+#         name="image_generator",
+#         description="Generate an image from a prompt",
+#     )
+
     agent = CodeAgent(
         tools=[
             FileTool.write_to_file,
             FileTool.read_from_file,
             MailTool.send_email,
-            DuckDuckGoSearchTool()
+            DuckDuckGoSearchTool(),
+            VisitWebpageTool(),
         ],
         model=mistral_model,
         additional_authorized_imports=[
+            "io",
             "os",
             "smtplib",
             "email.mime.text",
             "email.mime.multipart",
             "requests",
-            "bs4"
+            "bs4",
+            "matplotlib",
+            "matplotlib.pyplot",
+            "reportlab",
+            "fpdf",
+            "PyPDF2",
+            "pdfrw"
         ],
     )
 
