@@ -18,7 +18,7 @@ This project demonstrates the capabilities of smolagents to create a conversatio
 
 1. Clone this repository:
    ```
-   git clone https://github.com/joedac-netvigie/Ai-agent.git
+   git clone https://github.com/Joedac/AI-agent.git
    cd Ai-agent
    ```
 
@@ -51,7 +51,7 @@ This project demonstrates the capabilities of smolagents to create a conversatio
 
 1. Clone this repository:
    ```
-   git clone https://github.com/joedac-netvigie/Ai-agent.git
+   git clone https://github.com/Joedac/AI-agent.git
    cd Ai-agent
    ```
 
@@ -99,7 +99,7 @@ Then open your browser at http://localhost:8501 to access the web interface.
 
 #### Web Interface
 ```
-streamlit run app.py
+python app.py
 ```
 
 #### Terminal Interface
