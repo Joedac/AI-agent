@@ -1,13 +1,20 @@
 import os
 from dotenv import load_dotenv
-from smolagents import CodeAgent, DuckDuckGoSearchTool, HfApiModel, VisitWebpageTool, Tool
+from smolagents import (
+    CodeAgent,
+    DuckDuckGoSearchTool,
+    HfApiModel,
+    VisitWebpageTool,
+    Tool,
+)
 from models.llm import MistralLLM
 from tools.file_tool import FileTool
 from tools.mail_tool import MailTool
 from tools.ascii_art import display_ascii_art
+from tools.system_tool import SystemMonitorTool
+
 
 def main():
-
     display_ascii_art()
 
     load_dotenv()
@@ -20,13 +27,13 @@ def main():
 
     mistral_model = MistralLLM(api_key=api_key)
 
-#    *** test HF Spaces ***
-#     os.environ["HUGGINGFACE_TOKEN"] = hf_token
-#     image_generation_tool = Tool.from_space(
-#         "black-forest-labs/FLUX.1-schnell",
-#         name="image_generator",
-#         description="Generate an image from a prompt",
-#     )
+    # *** test HF Spaces ***
+    #     os.environ["HUGGINGFACE_TOKEN"] = hf_token
+    #     image_generation_tool = Tool.from_space(
+    #         "black-forest-labs/FLUX.1-schnell",
+    #         name="image_generator",
+    #         description="Generate an image from a prompt",
+    #     )
 
     agent = CodeAgent(
         tools=[
@@ -35,6 +42,7 @@ def main():
             MailTool.send_email,
             DuckDuckGoSearchTool(),
             VisitWebpageTool(),
+            SystemMonitorTool.get_system_info,
         ],
         model=mistral_model,
         additional_authorized_imports=[
@@ -50,7 +58,7 @@ def main():
             "reportlab",
             "fpdf",
             "PyPDF2",
-            "pdfrw"
+            "pdfrw",
         ],
     )
 
@@ -58,7 +66,7 @@ def main():
     while True:
         user_prompt = input("🚀 prompt > ")
 
-        if user_prompt.lower() == 'quit':
+        if user_prompt.lower() == "quit":
             print("👋 See you later khouya !")
             break
 

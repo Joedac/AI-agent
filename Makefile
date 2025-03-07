@@ -8,7 +8,7 @@ help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  web          Lance l'application en mode web (Streamlit)"
+	@echo "  web          Lance l'application en mode web"
 	@echo "  cli          Lance l'application en mode terminal interactif"
 	@echo "  build        Construit les images Docker"
 	@echo "  clean        Arrête les conteneurs et nettoie les conteneurs orphelins"
@@ -29,17 +29,17 @@ build: setup
 
 .PHONY: web
 web: setup
-	@echo "Démarrage de l'application en mode Web (Streamlit)..."
+	@echo "Démarrage de l'application en mode Web..."
 	@$(DOCKER_COMPOSE) up ai-agent-web
 
 .PHONY: web-daemon
 web-daemon: setup
-	@echo "Démarrage de l'application en mode Web (Streamlit) en arrière-plan..."
+	@echo "Démarrage de l'application en mode Web en arrière-plan..."
 	@$(DOCKER_COMPOSE) up -d ai-agent-web
 
 .PHONY: cli
 cli: setup
-	@echo "Démarrage de l'application en mode Terminal..."
+	@echo "Démarrage de l'application en mode CLI..."
 	@$(DOCKER_COMPOSE) run --rm ai-agent-cli
 
 .PHONY: logs

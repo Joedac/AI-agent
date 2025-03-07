@@ -1,4 +1,3 @@
-
 def display_ascii_art():
     """Affiche un art ASCII au démarrage du script"""
     ascii_art = """

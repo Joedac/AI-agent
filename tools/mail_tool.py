@@ -18,15 +18,15 @@ class MailTool:
             error or succes message
         """
 
-#         print("\n--- 📨 Détails de l'e-mail ---")
-#         print(f"Destinataire: {recipient}")
-#         print(f"Sujet: {subject}")
-#         print(f"Contenu:\n{content}")
-#
-#         confirmation = input("\n📨 Voulez-vous envoyer cet e-mail ? (oui/non): ").strip().lower()
-#
-#         if confirmation != "oui":
-#              return "Final answer: L'envoi de l'email a été annulé. Ne repose plus la question."
+        #         print("\n--- 📨 Détails de l'e-mail ---")
+        #         print(f"Destinataire: {recipient}")
+        #         print(f"Sujet: {subject}")
+        #         print(f"Contenu:\n{content}")
+        #
+        #         confirmation = input("\n📨 Voulez-vous envoyer cet e-mail ? (oui/non): ").strip().lower()
+        #
+        #         if confirmation != "oui":
+        #              return "Final answer: L'envoi de l'email a été annulé. Ne repose plus la question."
 
         gmail_user = os.getenv("EMAIL_USER")
         gmail_password = os.getenv("EMAIL_PASSWORD")
@@ -40,7 +40,6 @@ class MailTool:
             msg["From"] = gmail_user
             msg["To"] = recipient
             msg.attach(MIMEText(content, "html"))
-
 
             with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
                 server.login(gmail_user, gmail_password)
