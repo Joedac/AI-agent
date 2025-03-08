@@ -1,5 +1,6 @@
 import datetime
 import platform
+import os
 import matplotlib.pyplot as plt
 import psutil
 from smolagents import tool
@@ -12,7 +13,7 @@ class SystemMonitorTool:
     @tool
     def get_system_info() -> str:
         """
-        Retrieves and saves system information.
+        make report on system information.
 
         Returns:
             System Status Report or error
@@ -66,7 +67,8 @@ RÉSEAU:
   Octets reçus: {network.bytes_recv / (1024 ** 2):.2f} MB
             """
 
-            # Créer un graphique d'utilisation des ressources
+            os.makedirs("files", exist_ok=True)
+
             fig, axs = plt.subplots(2, 1, figsize=(10, 8))
 
             axs[0].bar(["CPU"], [cpu_info["utilisation"]], color="blue")
@@ -87,7 +89,7 @@ RÉSEAU:
             plt.savefig(chart_filename)
             plt.close()
 
-            return f"{report}\n\nRapport enregistré dans {output_filename}\nGraphique enregistré dans {chart_filename}"
+            return f"{report}\n\nGraphique enregistré dans {chart_filename}"
 
         except Exception as e:
             return f"Erreur lors de la récupération des informations système: {str(e)}"
