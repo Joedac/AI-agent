@@ -8,7 +8,7 @@ services:
       - "8501:8501"
     volumes:
       - .:/app:rw
-      - ./data:/app/data:rw
+      - ./files:/app/files:rw
     user: "${UID:-1000}:${GID:-1000}"
     restart: unless-stopped
     container_name: ai-agent-web
@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app:rw
-      - ./data:/app/data:rw
+      - ./files:/app/files:rw
     user: "${UID:-1000}:${GID:-1000}"
     restart: "no"
     container_name: ai-agent-cli

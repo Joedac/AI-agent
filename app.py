@@ -182,6 +182,21 @@ agent = CodeAgent(
         SystemMonitorTool.get_system_info,
     ],
     model=mistral_model,
+    additional_authorized_imports=[
+        "io",
+        "os",
+        "smtplib",
+        "email.mime.text",
+        "email.mime.multipart",
+        "requests",
+        "bs4",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "reportlab",
+        "fpdf",
+        "PyPDF2",
+        "pdfrw",
+    ],
 )
 
 monitoring_thread = Thread(target=start_monitoring, daemon=True)

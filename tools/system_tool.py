@@ -13,7 +13,7 @@ class SystemMonitorTool:
     @tool
     def get_system_info() -> str:
         """
-        make report on system information.
+        make report on system status.
 
         Returns:
             System Status Report or error
@@ -69,6 +69,12 @@ RÉSEAU:
 
             os.makedirs("files", exist_ok=True)
 
+            timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+
+            report_filename = f"files/rapport_systeme_{timestamp}.txt"
+            with open(report_filename, "w", encoding="utf-8") as f:
+                f.write(report)
+
             fig, axs = plt.subplots(2, 1, figsize=(10, 8))
 
             axs[0].bar(["CPU"], [cpu_info["utilisation"]], color="blue")
@@ -85,11 +91,11 @@ RÉSEAU:
 
             plt.tight_layout()
 
-            chart_filename = f"files/ressources_systeme_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+            chart_filename = f"files/ressources_systeme_{timestamp}.png"
             plt.savefig(chart_filename)
             plt.close()
 
-            return f"{report}\n\nGraphique enregistré dans {chart_filename}"
+            return f"{report}\n\nRapport enregistré dans: {report_filename}\nGraphique enregistré dans: {chart_filename}"
 
         except Exception as e:
             return f"Erreur lors de la récupération des informations système: {str(e)}"

@@ -62,7 +62,7 @@ def main():
         ],
     )
 
-    print("🤖 Salam ! Que puis je faire pour toi ? (ou 'quit' pour quitter):")
+    print("🤖 Hello ! Que puis je faire pour toi ? (ou 'quit' pour quitter):")
     while True:
         user_prompt = input("🚀 prompt > ")
 

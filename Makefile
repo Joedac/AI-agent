@@ -14,13 +14,13 @@ help:
 	@echo "  clean        Arrête les conteneurs et nettoie les conteneurs orphelins"
 	@echo "  rebuild      Nettoie et reconstruit les images puis lance le mode web"
 	@echo "  logs         Affiche les logs de l'application web"
-	@echo "  setup        Prépare l'environnement (crée le dossier data)"
+	@echo "  setup        Prépare l'environnement (crée le dossier files)"
 	@echo "  help         Affiche ce message d'aide"
 
 .PHONY: setup
 setup:
-	@mkdir -p data
-	@echo "Dossier 'data' configuré"
+	@mkdir -p files
+	@echo "Dossier 'files' configuré"
 
 .PHONY: build
 build: setup
